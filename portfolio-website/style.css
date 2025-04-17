@@ -1,0 +1,432 @@
+/* --- Global Styles & Variables --- */
+:root {
+    /* Elegant Color Scheme */
+    --primary-color: #C0A080; /* Soft Gold / Warm Beige */
+    --secondary-color: #1A2A4C; /* Deep Navy / Indigo */
+    --background-color: #FDF8F0; /* Off-White / Cream */
+    --alt-background-color: #F7F1E6; /* Slightly Darker Cream / Light Warm Gray */
+    --text-color: #333333; /* Dark Charcoal */
+    --light-text-color: #FDF8F0; /* Off-White / Cream for dark backgrounds */
+
+    /* Elegant Fonts */
+    --heading-font: 'Playfair Display', serif;
+    --body-font: 'Lato', sans-serif;
+
+    /* Layout */
+    --standard-padding: 70px 0; /* Slightly more padding */
+    --container-width: 90%;
+    --max-container-width: 1140px; /* Slightly wider max width */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--body-font);
+    color: var(--text-color);
+    line-height: 1.7; /* Slightly increased line height */
+    background-color: var(--background-color);
+    font-weight: 300; /* Lighter default weight for Lato */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    font-weight: 700; /* Bolder serif headings */
+    margin-bottom: 1.2rem;
+    color: var(--secondary-color); /* Navy headings */
+    line-height: 1.3;
+}
+
+h1 { font-size: 3.2rem; font-weight: 500; } /* Playfair looks good slightly less bold sometimes */
+h2 { font-size: 2.4rem; }
+p { margin-bottom: 1.2rem; }
+a { color: var(--primary-color); text-decoration: none; transition: color 0.3s ease; font-weight: 400;}
+a:hover { color: var(--secondary-color); } /* Hover to navy */
+ul { list-style: none; }
+
+.container {
+    width: var(--container-width);
+    max-width: var(--max-container-width);
+    margin: 0 auto;
+    padding: 0 20px; /* Consistent horizontal padding */
+}
+
+.section-padding {
+    padding: var(--standard-padding);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3.5rem; /* More space after title */
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after { /* Elegant underline */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 2px;
+    background-color: var(--primary-color); /* Gold underline */
+}
+
+.alt-bg {
+    background-color: var(--alt-background-color);
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 32px; /* Slightly larger button */
+    border-radius: 3px; /* Sharper edges */
+    font-weight: 700; /* Bolder button text */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    font-family: var(--body-font); /* Use body font for button */
+    text-transform: uppercase; /* Uppercase text for classic feel */
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color); /* Gold background */
+    color: var(--secondary-color); /* Navy text */
+    border: 2px solid var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--primary-color); /* Gold text */
+    border: 2px solid var(--primary-color);
+}
+
+/* --- Header & Navigation --- */
+header {
+    background-color: var(--secondary-color); /* Navy header */
+    color: var(--light-text-color); /* Cream text */
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--primary-color); /* Gold logo */
+    font-family: var(--heading-font); /* Use heading font for logo */
+}
+.logo:hover {
+    color: var(--light-text-color); /* Hover to cream */
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 30px; /* More space between links */
+}
+
+.nav-links a {
+    color: var(--light-text-color);
+    font-weight: 400; /* Regular weight for Lato */
+    padding: 5px 0;
+    position: relative;
+    letter-spacing: 0.5px;
+    font-size: 0.95rem;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color); /* Gold underline */
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--light-text-color);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* --- Hero Section --- */
+.hero {
+    background-color: var(--secondary-color); /* Solid Navy background */
+    /* Optional: Add a very subtle pattern or gradient if desired */
+    /* background: linear-gradient(rgba(26, 42, 76, 0.95), rgba(26, 42, 76, 0.95)), url('subtle-pattern.png'); */
+    color: var(--light-text-color); /* Cream text */
+    min-height: 90vh; /* Slightly less than full height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px; /* Account for fixed header */
+}
+
+.hero h1 {
+    color: var(--light-text-color); /* Cream heading */
+    margin-bottom: 1rem;
+    font-weight: 500; /* Match global h1 weight */
+}
+
+.hero .subtitle {
+    font-size: 1.4rem; /* Larger subtitle */
+    font-weight: 300; /* Lighter weight */
+    margin-bottom: 2.5rem; /* More space before button */
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    opacity: 0.9; /* Slightly transparent subtitle */
+}
+
+.hero .btn-primary {
+    background-color: var(--primary-color); /* Gold button */
+    color: var(--secondary-color); /* Navy text */
+}
+.hero .btn-primary:hover {
+    background-color: rgba(253, 248, 240, 0.9); /* Semi-transparent cream */
+    color: var(--secondary-color); /* Navy text */
+    border-color: rgba(253, 248, 240, 0.9);
+}
+
+/* --- About Section --- */
+/* Styles are mostly inherited correctly */
+.about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem; /* Increased gap */
+}
+
+.about-image {
+    max-width: 280px; /* Slightly larger image */
+    border-radius: 5px; /* Slightly rounded corners, not circle */
+    object-fit: cover;
+    border: 6px solid var(--primary-color); /* Thicker gold border */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.about-text {
+    text-align: center;
+    max-width: 750px;
+}
+.about-text p {
+    font-size: 1.05rem; /* Slightly larger body text here */
+}
+
+
+/* --- Skills Section --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.8rem; /* Increased gap */
+    text-align: center;
+}
+
+.skill-item {
+    background-color: var(--background-color); /* Main Cream bg */
+    padding: 25px 20px; /* More padding */
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1.1rem;
+    font-weight: 400; /* Regular weight for Lato */
+}
+
+.skill-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
+}
+
+.skill-item i {
+    display: block;
+    font-size: 2.8rem; /* Larger icons */
+    margin-bottom: 15px;
+    color: var(--primary-color); /* Gold icons */
+}
+
+/* --- Contact Section --- */
+.contact {
+    text-align: center;
+}
+
+.contact-text {
+    margin-bottom: 3rem;
+    font-size: 1.15rem; /* Slightly larger contact text */
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem; /* Increased gap */
+}
+
+.contact-link {
+    font-size: 1.2rem; /* Larger link text */
+    color: var(--text-color); /* Charcoal text */
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.3s ease;
+    font-weight: 400; /* Regular Lato weight */
+}
+
+.contact-link i {
+    margin-right: 12px; /* More space next to icon */
+    font-size: 1.6rem; /* Larger icon */
+    color: var(--primary-color); /* Gold icon */
+    width: 30px;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: var(--primary-color); /* Text turns gold on hover */
+}
+.contact-link:hover i {
+    color: var(--secondary-color); /* Icon turns navy on hover */
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--secondary-color); /* Navy footer */
+    color: var(--light-text-color); /* Cream text */
+    text-align: center;
+    padding: 2rem 0; /* More padding */
+    margin-top: 50px;
+}
+
+footer p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    font-weight: 300; /* Light Lato weight */
+    opacity: 0.8; /* Slightly muted footer text */
+}
+
+/* --- Responsive Design --- */
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    h1 { font-size: 3.8rem; }
+    h2 { font-size: 2.8rem; }
+
+    .container {
+        width: 85%;
+    }
+
+    .about-content {
+        flex-direction: row;
+        text-align: left;
+        align-items: center; /* Center vertically */
+    }
+    .about-text {
+        text-align: left;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .contact-links {
+        flex-direction: row;
+        justify-content: center;
+        gap: 3rem; /* More space between horizontal links */
+    }
+}
+
+/* Mobile devices (max-width: 767px) */
+@media (max-width: 767px) {
+    html { font-size: 15px; }
+    h1 { font-size: 2.6rem; }
+    h2 { font-size: 2.1rem; }
+
+    .section-padding {
+        padding: 50px 0; /* Adjusted padding */
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--secondary-color);
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem 0; /* More padding in mobile menu */
+        box-shadow: 0 4px 5px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 12px 0; /* More space between mobile links */
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero {
+        min-height: 75vh;
+    }
+
+    .hero .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 1rem;
+    }
+    .skill-item {
+        padding: 20px 15px;
+        font-size: 1rem;
+    }
+    .skill-item i {
+        font-size: 2.2rem;
+    }
+
+     .contact-link {
+        font-size: 1.1rem;
+    }
+}
